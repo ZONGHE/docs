@@ -2,7 +2,7 @@ crontab
 ---
 一些常用动作
 
-### 常用命令 Linux
+### 常用命令
 ```sh
 service crond start
 service crond stop
