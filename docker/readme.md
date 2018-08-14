@@ -69,7 +69,7 @@ docker ps -a
 docker images
 
 # 保存镜像
-docker commit -m "commit message" -a gavinning cid gavinning/name:tag
+docker commit -m "commit message" -a gavinning <cid> gavinning/name:tag
 ```
 
 ### 清理
@@ -81,7 +81,10 @@ docker rm $(sudo docker ps -qf status=exited)  # 删除状态为 exited 的容�
 
 sudo docker container prune  # 1.13版本之后 删除所有未运行容器
 
+# docker container 自动重启 run的时候添加参数
+docker run --restart unless-stopped
 ```
+[docker容器自动重启](https://blog.csdn.net/wennuanddianbo/article/details/77592401)
 
 
 

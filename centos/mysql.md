@@ -16,7 +16,7 @@ yum -y remove mysql-libs.x86_64
 如果要选择5.6，可以将5.6设置为``enable`` 5.7设置为``disable``
 ```sh
 wget dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
-yum localinstall mysql-community-release-el6-5.noarch.rpm
+yum localinstall mysql-community-release-el6-5.noarch.rpm -y
 yum repolist all | grep mysql
 yum-config-manager --disable mysql55-community
 yum-config-manager --disable mysql56-community
@@ -26,7 +26,7 @@ yum repolist enabled | grep mysql
 
 **Step4:安装mysql 服务器命令：**
 ```sh
-yum install mysql-community-server
+yum install mysql-community-server -y
 ```
 
 **Step5: 启动mysql命令:**
@@ -52,11 +52,20 @@ hkconfig mysqld on
   
 ---
 
+### Mysql 5.7 查看初始密码
+```sh
+grep 'temporary password' /var/log/mysqld.log
+# or
+cat /root/.mysql_secret
+```
+
 ### 修改密码
 
 ```sh
 mysql -u root
 mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('newpass');
+# or
+mysql> alter user root@localhost identified by 'newpass';
 ```
 
 ---
@@ -82,3 +91,36 @@ mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'youpassword' WIT
 ```mysql
 FLUSH PRIVILEGES 
 ```
+
+
+
+### 常见问题
+CentOS7yum安装mysql+需要：libsasl2.so.2()(64bit)
+[参考文档](https://blog.csdn.net/qq_38417808/article/details/81291588)
+[参考文档](http://blog.51cto.com/13155409/1969558)
+
+
+
+### Mysql目录迁移
+```sh
+# 停止mysql
+mysqladmin -u root -p shutdown
+
+# 假设要迁移的目标位置是：<target dirname>: /data/apps/mysql
+
+# 移动数据到目标目录
+# 转移完数据之后记得检查文件及目录所有权，需设置为mysql:mysql 否则服务无法启动
+mv /var/lib/mysql /data/apps/
+
+# 修改配置文件 /etc/my.cnf || /usr/share/mysql/*.cnf
+vim /etc/my.cnf
+
+# 1. 修改 datadir 目录位置为 <target dirname>
+# 2. 修改 socket 位置为 <target dirname>/mysql.sock
+# 3. 修改 log-error 位置
+# 4. 可选修改 pid-file 位置
+
+# 5. 最后，最重要的是一定要检查上述目录的所有权是 mysql:mysql
+# 6. 重启服务，如果服务无法启动，检查启动失败说明，检查mysql错误日志
+```
+[Mysql位置迁移参考文档](https://blog.csdn.net/qq_36040184/article/details/53889856)

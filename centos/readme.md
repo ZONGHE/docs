@@ -15,6 +15,27 @@ shutdown -h now  # 立刻关机(root用户使用)
 # 如果是通过shutdown命令设置关机的话，可以用shutdown -c命令取消重启
 
 
+# 查看端口占用情况
+netstat -lnp | grep 80
+lsof -i tcp:80
+# 列出所有端口
+netstat -ntlp
+# 查看进程
+ps pid
+
+
+# 开启端口（以80端口为例）
+/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT   # 写入修改
+/etc/init.d/iptables save   # 保存修改
+service iptables restart    # 重启防火墙，修改生效
+
+
+# 查看远程端口是否开放
+nmap ip  # 查看指定ip开放的端口
+nmap ip port  # 查看指定ip指定端口是否开放
+telnet ip port  # 根据返回值查看指定ip指定端口是否开放
+
+
 # 开机器启动
 chkconfig nginx on
 chkconfig redis on
@@ -156,6 +177,7 @@ yum clean all
 yum makecache
 yum update
 ```
+[参考文档](https://blog.csdn.net/u013850277/article/details/79240695)
 
 ### 2 安装基本环境
 ```sh
