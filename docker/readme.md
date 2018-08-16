@@ -89,3 +89,13 @@ docker run --restart unless-stopped
 
 
 
+### 常见问题
+1、Docker宿主机agetty进程cpu占用率100% 问题
+```sh
+# 引起原因 是在使用"docker run"运行容器时使用了 "/sbin/init"和"--privileged"参数
+
+# 解决方案
+systemctl stop getty@tty1.service
+systemctl mask getty@tty1.service
+```
+[参考文档](https://blog.csdn.net/bobpen/article/details/78559263)

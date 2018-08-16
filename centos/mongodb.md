@@ -92,7 +92,7 @@ auth = true
 use admin
 db.createUser({
     user: 'root',
-    pwd: 'lincoapp@2018',
+    pwd: 'lincoapp#2018',
     roles: [
         {
             role: 'root',
