@@ -14,8 +14,4 @@ yum install chromium
 ```
 这样就安装完成了。
 可以通过菜单来启动浏览器：
-<<<<<<< HEAD
-=======
-
->>>>>>> d962ebecbf568319b0b1849fa1ae8d6a045514c3
 ![](http://www.centoscn.com/uploads/allimg/140429/0013454118-0.png)

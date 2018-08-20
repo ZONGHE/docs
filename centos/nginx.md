@@ -1,6 +1,26 @@
 Nginx
 ---
 
+### Install
+```sh
+vim /etc/yum.repos.d/nginx.repo
+# =>
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+
+# =>
+yum install nginx -y
+
+ln -s /etc/nginx/conf.d ~/nginx
+
+systemctl status nginx
+systemctl start nginx
+systemctl enable nginx
+```
+
 #### Nginx禁止IP直接访问服务器设置
 建议新建配置文件``aaa.conf``拦截所有默认访问  
 返回500

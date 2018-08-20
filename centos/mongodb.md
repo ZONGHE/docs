@@ -92,7 +92,7 @@ auth = true
 use admin
 db.createUser({
     user: 'root',
-    pwd: 'lincoapp#2018',
+    pwd: 'yourpassword',
     roles: [
         {
             role: 'root',
@@ -146,3 +146,8 @@ wget https://mirrors.aliyun.com/mongodb/yum/redhat/7Server/mongodb-org/3.2/x86_6
 
 yum localinstall -y https://mirrors.aliyun.com/mongodb/yum/redhat/7Server/mongodb-org/3.2/x86_64/RPMS/mongodb-org-3.2.20-1.el7.x86_64.rpm
 ```
+
+
+### 遇到的问题
+1、docker容器环境里数据挂载到host目录，因为用户名是创建在数据库里
+所以当新起容器之后，新创建的数据库是没有用户名和密码的

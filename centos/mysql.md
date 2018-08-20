@@ -85,7 +85,8 @@ mysql>select host, user from user;
 从任何主机上使用root用户，密码：youpassword（你的root密码）连接到mysql服务器：
 ```sh
 mysql -u root -proot 
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'youpassword' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'youpassword' WITH GRANT OPTION;
+
 ```
 操作完后切记执行以下命令刷新权限 
 ```mysql
@@ -124,3 +125,32 @@ vim /etc/my.cnf
 # 6. 重启服务，如果服务无法启动，检查启动失败说明，检查mysql错误日志
 ```
 [Mysql位置迁移参考文档](https://blog.csdn.net/qq_36040184/article/details/53889856)
+
+
+
+
+### 常见问题
+1、
+```log
+# in docker
+Version: '5.6.41'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  MySQL Community Server (GPL)
+2018-08-17 08:13:33 437 [Note] Plugin 'FEDERATED' is disabled.
+/usr/sbin/mysqld: Table storage engine for 'plugin' doesn't have this option
+2018-08-17 08:13:33 437 [ERROR] Can't open the mysql.plugin table. Please run mysql_upgrade to create it.
+```
+解决方案
+```sh
+find /var/lib/mysql -type f -exec touch {} \; && service mysql start
+```
+[参考文档](https://github.com/docker/for-linux/issues/72)
+
+2、
+```err
+Host '**.***.**.***' is not allowed to connect to this MySQL server.
+```
+原因：回滚等操作可能会引起配置恢复，导致远程连接设置丢失
+解决方案：重新设置远程连接权限
+```sh
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'youpassword' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```

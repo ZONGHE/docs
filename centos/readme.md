@@ -57,6 +57,19 @@ systemctl start docker.service
 [systemctl](http://man.linuxde.net/systemctl)  
 
 
+
+### centos7 防火墙
+```sh
+1、firewalld的基本使用
+systemctl start firewalld  # 启动
+systemctl stop firewalld   # 关闭
+systemctl status firewalld 
+systemctl disable firewalld  # 开机禁用
+systemctl enable firewalld   # 开机启用
+```
+[参考文档](https://www.cnblogs.com/moxiaoan/p/5683743.html)
+
+
 ---
 CENTOS 6.x lab
 ---
@@ -243,6 +256,12 @@ yum install nginx -y
 ```sh
 /etc/init.d/nginx start # 启动Nginx服务
 /etc/init.d/nginx stop # 停止Nginx服务
+
+systemctl status nginx
+systemctl start nginx
+systemctl stop nginx
+systemctl enable nginx # 开机启动
+
 /etc/nginx/nginx.conf # Nginx配置文件位置
 /usr/share/nginx/html # Nginx默认服务器目录
 ```
@@ -292,7 +311,7 @@ yum -y remove mysql-libs.x86_64
 如果要选择5.6，可以将5.6设置为``enable`` 5.7设置为``disable``
 ```sh
 wget dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
-yum localinstall mysql-community-release-el6-5.noarch.rpm
+yum localinstall mysql-community-release-el6-5.noarch.rpm -y
 yum repolist all | grep mysql
 yum-config-manager --disable mysql55-community
 yum-config-manager --disable mysql56-community
@@ -302,7 +321,7 @@ yum repolist enabled | grep mysql
 
 **Step4:安装mysql 服务器命令：**
 ```sh
-yum install mysql-community-server
+yum install mysql-community-server -y
 ```
 
 **Step5: 启动mysql命令:**

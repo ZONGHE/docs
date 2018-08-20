@@ -99,3 +99,16 @@ systemctl stop getty@tty1.service
 systemctl mask getty@tty1.service
 ```
 [参考文档](https://blog.csdn.net/bobpen/article/details/78559263)
+
+
+2、firewalld影响docker启动
+```sh
+# 报错结果如下
+ERROR: for docker-php_redis_1  Cannot start service redis: driver failed programming external connectivity on endpoint docker-php_redis_1 (85374c46684140ff5cb45cc4452058570942242121b12ee84e00c12a0bbb9e12):  (iptables failed: iptables --wait -t nat -A DOCKER -p tcp -d 0/0 --dport 6380 -j DNAT --to-destination 192.168.48.4:6379 ! -i br-88fd6ade0ba7: iptables: No chain/target/match by that name
+```
+**字面意思：**  
+由字面意思看，是因为docker之前加载了宿主机的iptables。  
+**分析原因：**  
+因切防火墙策略导致docker加载iptables失败。因本身是docker间通信，所以不需要配置iptables，则在启动docker的时候关闭iptables  
+**解决方案：**  
+修改/etc/sysconfig/docker里的OPTIONS增加``--iptables=false``，重启docker服务，再启动redis，顺利开启。  
