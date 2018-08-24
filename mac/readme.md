@@ -63,3 +63,9 @@ mysql -uroot -p
 use mysql
 update user set authentication_string = password('root'), password_expired = 'N', password_last_changed = now() where user = 'root';
 ```
+
+
+### Install ip command
+```sh
+brew install iproute2mac
+```
