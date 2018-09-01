@@ -48,13 +48,15 @@ mysqld stop
 chkconfig --list | grep mysqld
 hkconfig mysqld on
 ```
-  
+[升级参考文档](https://my.oschina.net/CraneHe/blog/823684)
   
 ---
 
 ### Mysql 5.7 查看初始密码
 ```sh
 grep 'temporary password' /var/log/mysqld.log
+
+# v%q2)y+kpl-Q
 # or
 cat /root/.mysql_secret
 ```
@@ -63,7 +65,7 @@ cat /root/.mysql_secret
 
 ```sh
 mysql -u root
-mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('newpass');
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('youpassword');
 # or
 mysql> alter user root@localhost identified by 'newpass';
 ```
@@ -154,3 +156,38 @@ Host '**.***.**.***' is not allowed to connect to this MySQL server.
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'youpassword' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
+
+3、
+```err
+Error: Requires: libsasl2.so.2
+```
+[参考文档](https://blog.csdn.net/qq_38417808/article/details/81291588)
+
+
+### Mysql导入导出
+Export
+```sh
+# 导出数据
+mysqldump -uroot -p abc > abc.sql
+
+# 只导出表结构
+mysqldump -uroot -p -d abc > abc.sql
+```
+
+Import
+```sh
+mysql -uroot -p
+
+create database abc;
+use abc;
+set names utf8;
+source /home/abc/abc.sql;
+```
+
+
+### 查看Mysql连接数
+```mysql
+show variables like 'max_connections';
+```
+要对 mysql 的最大连接数进行修改，只需要在 my.cnf 配置文件里面修改 max_connections 的值，然后重启 mysql 就行。如果 my.ini 文件中没有找到 max_connections 条目，可自行添加以下条目
+[参考文档](https://blog.csdn.net/chengjiangbo/article/details/11898019)

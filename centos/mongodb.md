@@ -57,7 +57,7 @@ PrivateTmp=false
 [Install]
 WantedBy=multi-user.target
 ```
-
+[参考文档](http://www.ruanyifeng.com/blog/2016/03/node-systemd-tutorial.html)  
 
 ### /etc/mongod.conf
 ```sh

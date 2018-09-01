@@ -46,3 +46,26 @@ logfile /var/log/redis/redis.log
 # =>
 logfile /data/logs/redis/redis.log
 ```
+[自助安装 可作为流程参考，不要直接执行](https://gist.github.com/jpickwell/e6857da4ba17c83ef09729c5d448f6bb)  
+
+
+### redis.service
+vim /usr/lib/systemd/system/redis.service
+```sh
+[Unit]
+Description=Redis persistent key-value database
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/redis-server /etc/redis.conf --supervised systemd
+ExecStop=/usr/libexec/redis-shutdown
+Type=notify
+User=redis
+Group=redis
+RuntimeDirectory=redis
+RuntimeDirectoryMode=0755
+
+[Install]
+WantedBy=multi-user.target
+
+```
