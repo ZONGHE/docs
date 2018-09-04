@@ -112,3 +112,14 @@ ERROR: for docker-php_redis_1  Cannot start service redis: driver failed program
 因切防火墙策略导致docker加载iptables失败。因本身是docker间通信，所以不需要配置iptables，则在启动docker的时候关闭iptables  
 **解决方案：**  
 修改/etc/sysconfig/docker里的OPTIONS增加``--iptables=false``，重启docker服务，再启动redis，顺利开启。  
+
+
+#### docker清理
+清理没有使用的镜像和已经停止运行的容器
+```sh
+dcleanup(){
+    docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+    docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+}
+```
+[参考文档](https://codeday.me/bug/20170424/12279.html)

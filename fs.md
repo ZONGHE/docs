@@ -19,8 +19,10 @@ tar zvxf target.tar.gz
 ### 大文件分块
 linux文件分割（将大的日志文件分割成小的）
 ```sh
-# 分割文件
+# 分割文件 300是每个文件行数
 split -l 300 source.txt new_file_prefix
+# or 按照大小分割
+ split -b 50m server.log waynelog
 
 # 合并文件
 cat small_files* > large_file

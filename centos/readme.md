@@ -375,3 +375,11 @@ ln -s ../lib/node_modules/pm2/bin/pm2 pm
 pm -v
 pm ls
 ```
+
+
+
+#### 查找大文件
+```sh
+find . -type f -size +800M  -print0 | xargs -0 du -h | sort -nr
+```
+[参考文档](http://www.cnblogs.com/kerrycode/p/4391859.html)
