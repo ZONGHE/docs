@@ -71,3 +71,25 @@ yum install deltarpm -y
 ```
 [参考文档](https://shipengliang.com/software-exp/delta-rpms-disabled-because-usr-bin-applydeltarpm-not-installed-%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95.html)  
 
+
+
+### 安装crontab
+```sh
+yum install crontabs
+
+#or
+
+yum -y install vixie-cron
+yum -y install crontabs
+
+
+
+### 智能分享图定时任务 推荐按需添加
+*/5 * * * * NODE_ENV=development /root/n/bin/node /data/apps/app/share-service/crontab/weightRunner.js >> /data/logs/app/share-service-weight-runner.log 2>&1
+```
+
+
+#### 替换文本内容
+```sh
+sed -i s/被替换的内容/要替换成的内容/ file
+```

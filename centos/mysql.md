@@ -65,7 +65,7 @@ cat /root/.mysql_secret
 
 ```sh
 mysql -u root
-mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('youpassword');
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('yourpassword');
 # or
 mysql> alter user root@localhost identified by 'newpass';
 ```
@@ -87,12 +87,12 @@ mysql>select host, user from user;
 从任何主机上使用root用户，密码：youpassword（你的root密码）连接到mysql服务器：
 ```sh
 mysql -u root -proot 
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'youpassword' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'yourpassword' WITH GRANT OPTION;
 
 ```
 操作完后切记执行以下命令刷新权限 
 ```mysql
-FLUSH PRIVILEGES 
+FLUSH PRIVILEGES
 ```
 
 
@@ -162,6 +162,15 @@ FLUSH PRIVILEGES;
 Error: Requires: libsasl2.so.2
 ```
 [参考文档](https://blog.csdn.net/qq_38417808/article/details/81291588)
+
+
+4、
+mysql无法启动(Table 'mysql.plugin' doesn't exist)
+```sh
+# 通常因为数据初始化失败导致
+# 清空mysql数据目录
+# 重启即可
+```
 
 
 ### Mysql导入导出
