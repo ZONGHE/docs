@@ -65,9 +65,9 @@ cat /root/.mysql_secret
 
 ```sh
 mysql -u root
-mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('yourpassword');
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('yourpassword');
 # or
-mysql> alter user root@localhost identified by 'newpass';
+alter user root@localhost identified by 'newpass';
 ```
 
 ---

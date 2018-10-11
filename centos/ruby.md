@@ -1,0 +1,1 @@
+[ruby](http://www.iyu.co/web/centos-install-ruby/)
