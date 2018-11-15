@@ -12,7 +12,7 @@ git push origin -d BranchName  # 删除远程分支
 把``B``分支的commit添加到``A``
 ```
 git checkout A
-git cherry-pick <B:commit-hash>
+git cherry-pick <B-commit-hash>
 ```
 
 

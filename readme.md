@@ -34,3 +34,10 @@
 [user](centos/user.md)  
 [linuxCommands](centos/linuxCommands.md)  
 [google_authenticator](centos/google_authenticator.md)  
+
+
+
+### Centos7设置上海时区
+```sh
+timedatectl set-timezone Asia/Shanghai
+```
