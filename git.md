@@ -23,3 +23,9 @@ git remote prune origin --dry-run
 # 执行清理本地无效的远程分支
 git remote prune origin
 ```
+
+
+#### 清空git仓库所有提交历史
+[删除git项目所有提交历史，使其成为一个新仓库](https://blog.csdn.net/wkzd2016/article/details/80639539)
+
+https://www.cnblogs.com/weilantiankong/p/9155026.html

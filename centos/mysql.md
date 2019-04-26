@@ -12,6 +12,9 @@ yum list installed | grep mysql
 yum -y remove mysql-libs.x86_64
 ```
 
+### 参考文档 ** new
+[参考文档](https://www.cnblogs.com/freely/p/8087885.html)
+
 **Step3: 给CentOS添加rpm源，并且选择较新的源命令：**  
 如果要选择5.6，可以将5.6设置为``enable`` 5.7设置为``disable``
 ```sh

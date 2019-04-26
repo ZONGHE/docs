@@ -34,6 +34,7 @@ protected-mode no
 # 修改daemonize no 为 daemonize yes 添加后台运行
 daemonize yes
 ```
+
 默认目录迁移
 ```sh
 # 数据目录
