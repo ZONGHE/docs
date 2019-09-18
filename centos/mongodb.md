@@ -100,7 +100,25 @@ db.createUser({
         }
     ]
 })
+db.auth("root", "password")
+
+# 创建跟随db的普通用户
+use images
+db.createUser({
+    user:"images",
+    pwd:"123456",
+    roles:[{
+        role:"dbAdmin",
+        db:"images"
+    },{
+        role:"readWrite",
+        db:"images"
+    }]
+})
+db.auth("images", "123456")
 ```
+
+
 ```sh
 # 开启登陆验证
 vim /etc/mongo.conf
@@ -120,7 +138,7 @@ mongo -u root -p root --authenticationDatabase 'admin'
 ```
 
 [创建用户参考文档](https://www.cnblogs.com/xiaoqian1993/p/5944039.html)
-
+[开启安全验证参考文档](https://blog.csdn.net/jeanette_zlj/article/details/79563954)
 
 
 
