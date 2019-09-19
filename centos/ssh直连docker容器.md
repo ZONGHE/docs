@@ -47,12 +47,18 @@ ssh root@domain -p port
 j2
 
 
+# 常见问题 oh-my-zsh
 # 9
 # the last
 # 修改zsh配置文件
 vim ~/.zshrc
 # 新增以下内容 =>
 export LC_ALL="en_US.UTF-8"
+# or
+export LC_ALL="en_US.UTF-8" 
+export LANG="en_US.UTF-8" 
+export LANGUAGE="en_US.UTF-8" 
+
 # 保存并退出
 source ~/.zshrc
 # done
