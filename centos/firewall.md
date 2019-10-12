@@ -37,7 +37,7 @@ firewall-cmd --remove-port=8056/tcp
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 
 # 永久删除对外开放的端口
-firewall-cmd --zone=public --remove-port=8005/tcp --permanent
+firewall-cmd --zone=public --remove-port=8080/tcp --permanent
 ```
 
 ### 端口转发

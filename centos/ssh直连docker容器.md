@@ -63,3 +63,14 @@ export LANGUAGE="en_US.UTF-8"
 source ~/.zshrc
 # done
 ```
+
+
+重新登录还会报错的情况下参考：https://www.lijiaocn.com/%E9%97%AE%E9%A2%98/2018/09/07/centos7-set-locale.html
+
+在目标机器的/etc/locale.conf中明确设置LC_CTYPE：
+```sh
+$ cat /etc/locale.conf
+LANG="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+```
+重新登录，问题消失。

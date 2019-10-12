@@ -16,3 +16,16 @@ cd ~/.ssh
 cat id_rsa.pub > authorized_keys
 chmod 600 authorized_keys
 ```
+
+
+
+### 禁止root远程登录
+1、修改sshd_config文件
+```sh
+sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+```
+
+2、重启ssh服务
+```sh
+service sshd restart
+```

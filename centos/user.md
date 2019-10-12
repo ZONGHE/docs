@@ -8,7 +8,7 @@ groupadd -g 888 gavinning
 
 创建用户，指定HOME目录和用户id
 ```sh
-useradd gavinning -d /home/gavinning -g gavinning -u 888
+useradd gavinning -d /home/gavinning -g gavinning -u 888888
 ```
 
 给已有的用户增加工作组

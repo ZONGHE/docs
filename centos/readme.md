@@ -16,9 +16,12 @@ shutdown -h now  # 立刻关机(root用户使用)
 
 
 # 查看端口占用情况
+netstat -ntl | grep 80  # for mac
 netstat -lnp | grep 80
 netstat -ntlp | grep 80
+
 lsof -i tcp:80
+lsof -i:8081    # for mac
 # 列出所有端口
 netstat -ntlp
 # 查看进程
