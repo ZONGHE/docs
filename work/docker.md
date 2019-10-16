@@ -9,6 +9,9 @@ yum update -y
 yum install zsh wget tree git docker lrzsz unzip vim -y
 yum install zsh git docker lrzsz unzip vim -y
 
+yum install zsh wget tree git lrzsz unzip vim -y
+
+
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 

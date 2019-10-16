@@ -53,7 +53,7 @@ firewall-cmd --permanent --remove-masquerade  # 禁止防火墙伪装IP
 # 将80端口的流量转发至8080
 firewall-cmd --permanent --add-forward-port=port=80:proto=tcp:toport=8080
 # 将80端口的流量转发至
-firewall-cmd --permanent --add-forward-port=port=80:proto=tcp:toaddr=192.168.1.0.1192.168.0.1
+firewall-cmd --permanent --add-forward-port=port=80:proto=tcp:toaddr=192.168.1.0.1
 # 将80端口的流量转发至192.168.0.1的8080端口
 firewall-cmd --permanent --add-forward-port=port=80:proto=tcp:toaddr=192.168.0.1:toport=8080
 

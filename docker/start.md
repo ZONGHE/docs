@@ -15,3 +15,17 @@ docker run -d --privileged \
 --restart unless-stopped \
 5182e96772bf \
 /usr/sbin/init
+
+
+
+
+
+
+<!-- Only for test -->
+docker run -d --privileged \
+--name centos \
+--restart unless-stopped \
+0cb4fb73950e \
+/usr/sbin/init
+
+docker run -di --name pinyougou_mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql

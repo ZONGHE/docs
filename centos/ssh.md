@@ -29,3 +29,23 @@ sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 ```sh
 service sshd restart
 ```
+
+
+SSH安全配置
+```
+# 禁用root直接登录
+PermitRootLogin no
+
+# 禁用空口令登录
+PermitEmptyPasswords no
+
+# 禁用口令登录
+PasswordAuthentication no
+
+# 启用密钥验证
+RSAAuthentication yes
+PubkeyAuthentication yes
+```
+
+
+
