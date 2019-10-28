@@ -34,10 +34,10 @@ firewall-cmd --list-forward-ports
 firewall-cmd --remove-port=8056/tcp
 
 # 永久开放端口
-firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --zone=public --add-port=3306/tcp --permanent
 
 # 永久删除对外开放的端口
-firewall-cmd --zone=public --remove-port=8080/tcp --permanent
+firewall-cmd --zone=public --remove-port=3306/tcp --permanent
 ```
 
 ### 端口转发
@@ -72,4 +72,20 @@ firewall-cmd --permanent --zone=public --add-forward-port=port=8056:proto=tcp:to
 
 # 删除转发规则
 firewall-cmd --permanent --zone=public --remove-forward-port=port=8056:proto=tcp:toaddr=xxx.xx.xx.xxx:toport=3356
+```
+
+
+### Docker
+docker容器访问宿主机可能会被``firewall``封禁，单纯开启端口不能生效  
+需要添加``172.17.0.0/16``网段白名单
+
+```sh
+firewall-cmd --permanent --zone=trusted --add-source=172.17.0.0/16
+firewall-cmd --reload
+```
+[参考文档](https://blog.csdn.net/evandeng2009/article/details/88857813)
+
+将虚拟网卡docker0添加到trusted模式下。但是完成后需要重启防火墙才可以生效。
+```sh
+firewall-cmd --permanent --add-interface=docker0 --zone=trusted
 ```
